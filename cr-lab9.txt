@@ -1,0 +1,30 @@
+2 - gcc -fPIC -c max.c min.c var.c
+3 - gcc -shared *.o -o liblab9.so
+4 - sudo mv liblab9.so /opt/lib/
+5 - gcc main.c -L/opt/lib -llab9
+6 - /usr/bin/ld: cannot find -llab9
+    collect2: error: ld returned 1 exit status
+7 - echo $LD_LIBRARY_PATH
+    le contenu de la variable est vide
+8 - export LD_LIBRARY_PATH=/opt/lib
+9 - gcc main.c -L/opt/lib -llab9
+    le code est bien compilé 
+10- export LD_LIBRARY_PATH="/opt/lib" dans bashrc
+11- locate libm.so
+12- soname : libm.so.6
+13- sudo cp /opt/lib/liblab9.so /usr/lib
+    cd /usr/lib
+    sudo chmod 444 liblab9.so
+14- sudo ldconfig
+15- ldconfig -p | grep liblab9.so
+    liblab9.so (libc6,x86-64) => /lib/liblab9.so
+16- ldd liblab9.so
+    statically linked
+17- Dans .bashrc , on commente export LD_LIBRARY_PATH="/opt/lib"
+18- gcc main.c -llab9
+
+
+
+
+
+
